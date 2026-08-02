@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -38,7 +38,7 @@ nav .nav-bar {
 
 .nav-bar .nav-links li {
     margin: 0 30px;
-    list-style: none; /* retira a caracteristica de lista */
+    list-style: none;
 }
 
 .nav-bar .nav-links li a {
@@ -54,27 +54,291 @@ nav .nav-bar .logo a {
     text-decoration: none;
     font-weight: 700;
     color: #fff;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.nav-bar .logo a::before {
-    content: '';
+/* Alinha a busca e o perfil lado a lado */
+.nav-bar .darkLight-searchBox {
+    display: flex;
+    align-items: center;
+}
+
+.searchBox {
+    position: relative;
+}
+
+.darkLight-searchBox .searchToggle {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* APENAS os ícones da busca usam position: absolute para trocar entre a Lupa e o X */
+.searchToggle ion-icon {
     position: absolute;
-    height: 6px;
-    width: 6px;
-    border-radius: 50%;
     color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.nav-links li a::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
+/* Alternância dos ícones da busca */
+.searchToggle ion-icon.cancel {
     opacity: 0;
+    pointer-events: none;
+}
+
+.searchBox.active .searchToggle ion-icon.search {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.searchBox.active .searchToggle ion-icon.cancel {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Campo de Busca (Popup) */
+.searchBox .search-field {
+    position: absolute;
+    right: 0;
+    bottom: -85px;
+    height: 45px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: #660860;
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
     transition: all 0.3s ease;
+}
+
+.searchBox.active .search-field {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search-field input {
+    height: 100%;
+    width: 100%;
+    padding: 0 15px 0 45px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    font-size: 14px;
     background-color: #fff;
-    transform: translateX(50%);
-    height: 6px;
-    width: 6px;
+    color: #333;
+}
+
+.search-field ion-icon {
+    position: absolute;
+    left: 15px;
+    color: #660860;
+    font-size: 20px;
+}
+
+/* --- PERFIL (Pessoinha ao lado da Lupa) --- */
+.darkLight-searchBox .profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin-left: 10px; /* Cria a distância entre a lupa e a pessoinha */
+    text-decoration: none;
+}
+
+.profile-link ion-icon {
+    position: static; /* Mantém o ícone no fluxo normal da página */
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+
+/* login 
+/* --- TELA DE LOGIN --- */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #660860;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-box ion-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #660860;
+    font-size: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 10px 10px 38px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.btn-login,
+.btn-cadastrar {
+    display: block;         
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;  
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-login {
+    background-color: #660860;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px; 
+}
+
+.btn-login:hover {
+    background-color: #4f064b;
+}
+
+.btn-cadastrar {
+    background-color: #c810ca;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-cadastrar:hover {
+    background-color: #a80da9;
+}
+
+.btn-login:hover {
+    background-color: #4a0546;
+}
+
+.login-footer {
+    margin-top: 15px;
+}
+
+.login-footer a {
+    color: #660860;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/*cadastrar
+/* Estilo do botão de Cadastrar quando for um link <a> */
+.btn-cadastrar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #c810ca; /* Rosa destaque */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.btn-cadastrar:hover {
+    background-color: #a00ca2;
+}
+
+
+
+/*faq
+/* --- ESTILOS DA PÁGINA DE FAQ --- */
+.faq-container {
+    max-width: 800px;
+    margin: 100px auto 40px auto; /* Espaço para a navbar fixa */
+    padding: 0 20px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.faq-header h2 {
+    color: #660860;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.faq-header p {
+    color: #666;
+    font-size: 16px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #660860; /* Detalhe roxo no canto esquerdo */
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.faq-item h3 ion-icon {
+    color: #660860;
+    font-size: 22px;
+}
+
+.faq-item p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.5;
+    padding-left: 32px;
 }
