@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Doe-se</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Entrar no Doe-se</h2>
+        
+        <form id="formLogin">
+            <div class="input-box">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input type="email" id="email" placeholder="Seu e-mail" required>
+            </div>
+        
+            <div class="input-box">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" id="senha" placeholder="Sua senha" required>
+            </div>
+        
+            <button type="submit" class="btn-login">Entrar</button>
+            <a href="cadastrar.html" class="btn-cadastrar" style="display: block; text-align: center; margin-top: 10px; text-decoration: none;">Cadastrar</a>
+        </form>
+
+        <div class="login-footer">
+            <a href="intro.html">← Voltar para o início</a>
+        </div>
+    </div>
+
+    <script>
+        const formLogin = document.getElementById('formLogin');
+
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/usuarios/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Guarda o token e os dados do usuário para requisições futuras
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('usuario', JSON.stringify(data.usuario));
+
+                    alert('Login realizado com sucesso!');
+                    window.location.href = 'intro.html';
+                } else {
+                    alert(data.mensagem || 'E-mail ou senha incorretos.');
+                }
+            } catch (error) {
+                console.error('Erro ao fazer login:', error);
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+    </script>
+</body>
+</html>
