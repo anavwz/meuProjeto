@@ -2,21 +2,31 @@ CREATE DATABASE IF NOT EXISTS `doe_se` DEFAULT CHARACTER SET utf8mb4 COLLATE utf
 USE `doe_se`;
 
 -- 1. Tabela: usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(200) NOT NULL UNIQUE,
-  `telefone` VARCHAR(20) NOT NULL,
-  `cpf` VARCHAR(14) NOT NULL UNIQUE,
-  `senha` VARCHAR(255) NOT NULL,
-  `cidade` VARCHAR(100) NOT NULL,
-  `bairro` VARCHAR(100) NOT NULL,
-  `endereco` VARCHAR(255) NOT NULL,
-  `foto_perfil` VARCHAR(255) DEFAULT NULL,
-  `foto_documento` VARCHAR(255) DEFAULT NULL,
-  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    telefone VARCHAR(20) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    cep VARCHAR(9) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    estado CHAR(2) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    endereco VARCHAR(150) NOT NULL,
+    numero VARCHAR(15) NOT NULL,
+    complemento VARCHAR(100),
+    foto_perfil VARCHAR(255),
+    foto_documento VARCHAR(255),
+    email_verificado BOOLEAN DEFAULT FALSE,
+    status ENUM(
+        'ativo',
+        'bloqueado',
+        'pendente'
+    ) DEFAULT 'ativo',
+    ultimo_acesso DATETIME NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 -- 2. Tabela: categorias
 CREATE TABLE IF NOT EXISTS `categorias` (
@@ -34,23 +44,27 @@ CREATE TABLE IF NOT EXISTS `administradores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 4. Tabela: itens
-CREATE TABLE IF NOT EXISTS `itens` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `usuario_id` INT(11) NOT NULL,
-  `categoria_id` INT(11) NOT NULL,
-  `titulo` VARCHAR(150) NOT NULL,
-  `descricao` TEXT NOT NULL,
-  `estado` ENUM('Ótimo','Bom','Razoável') NOT NULL,
-  `cidade` VARCHAR(100) NOT NULL,
-  `bairro` VARCHAR(100) NOT NULL,
-  `status` ENUM('Disponível','Reservado','Doado') NOT NULL DEFAULT 'Disponível',
-  `imagens_itens` VARCHAR(255) DEFAULT NULL,
-  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_itens_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_itens_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE itens (
+id INT AUTO_INCREMENT PRIMARY KEY,
+usuario_id INT NOT NULL,
+categoria_id INT NOT NULL,
+titulo VARCHAR(150) NOT NULL,
+descricao TEXT NOT NULL,
+estado ENUM('Ótimo','Bom','Razoável') NOT NULL,
+cep VARCHAR(9),
+cidade VARCHAR(100),
+bairro VARCHAR(100),
+endereco VARCHAR(150),
+numero VARCHAR(15),
+status ENUM(
+'Disponível',
+'Reservado',
+'Doado'
+) DEFAULT 'Disponível',
+data_doacao DATETIME,
+criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
+);
 -- 5. Tabela: imagens_itens
 CREATE TABLE IF NOT EXISTS `imagens_itens` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
