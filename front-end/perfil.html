@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil | Doe-se</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container">
+    <div class="form">
+      <h1>Meu perfil</h1>
+      <div id="perfil">Carregando...</div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      renderNav();
+
+      if (!requireLogin()) return;
+
+      const perfilContainer = document.getElementById("perfil");
+
+      try {
+        const u = await api("/usuarios/perfil", {
+          headers: authHeaders(false)
+        });
+
+        perfilContainer.innerHTML = `
+          <p><b>Nome:</b> ${esc(u.nome)}</p>
+          <p><b>E-mail:</b> ${esc(u.email)}</p>
+          <p><b>Telefone:</b> ${esc(u.telefone)}</p>
+          <p><b>Local:</b> ${esc(u.cidade)} - ${esc(u.bairro)}</p>
+        `;
+      } catch (e) {
+        perfilContainer.textContent = e.message;
+      }
+    });
+  </script>
+</body>
+</html>

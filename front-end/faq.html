@@ -1,84 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Doe-se</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Doe-se</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="nav"></div>
 
-<nav>
-    <div class="nav-bar">
-        <span class="logo"><a href="index.html">Doe-se</a></span>
-        
-        <div class="menu">
-            <ul class="nav-links">
-                <li><a href="intro.html">Principal</a></li>
-                <li><a href="#">Itens</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-            </ul>
-        </div>
+  <main class="container">
+    <section class="hero">
+      <h1>FAQ</h1>
+      <p><b>Como publico?</b> Faça login e clique em “Publicar item”.</p>
+      <p><b>Como procuro?</b> Use nome, categoria, cidade ou bairro na página inicial.</p>
+      <p><b>Como faço uma pergunta?</b> Abra um item e publique um comentário.</p>
+      <p><b>Posso responder?</b> Sim, use o botão “Responder”.</p>
+      <p><b>Posso excluir meu comentário?</b> Sim, somente o autor pode excluí-lo.</p>
+    </section>
+  </main>
 
-        <div class="darkLight-searchBox">
-            <div class="searchBox">
-                <div class="searchToggle">
-                    <ion-icon name="close-outline" class="cancel"></ion-icon>
-                    <ion-icon name="search-outline" class="search"></ion-icon>
-                </div>
-
-                <div class="search-field">
-                    <input type="text" placeholder="Pesquisar...">
-                    <ion-icon name="search-outline"></ion-icon>
-                </div>
-            </div>
-
-            <a href="login.html" class="profile-link">
-                <ion-icon name="person-outline"></ion-icon>
-            </a>
-        </div>
-    </div>
-</nav>
-
-<main class="faq-container">
-    <div class="faq-header">
-        <h2>Perguntas Frequentes (FAQ)</h2>
-        <p>Tire suas dúvidas sobre o funcionamento do Doe-se.</p>
-    </div>
-
-    <div class="faq-list">
-        
-        <div class="faq-item">
-            <h3><ion-icon name="help-circle-outline"></ion-icon> O que é o projeto Doe-se?</h3>
-            <p>O Doe-se é uma plataforma desenvolvida para conectar pessoas que desejam fazer doações de itens (como roupas, alimentos e móveis) a quem realmente precisa.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3><ion-icon name="help-circle-outline"></ion-icon> A plataforma é gratuita?</h3>
-            <p>Sim! O uso do Doe-se é 100% gratuito tanto para quem está doando quanto para quem está recebendo as doações.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3><ion-icon name="help-circle-outline"></ion-icon> Como posso cadastrar um item para doação?</h3>
-            <p>Após criar sua conta e fazer o login, acesse a opção <strong>"Itens"</strong> no menu e clique em <strong>"Cadastrar Novo Item"</strong> preenchendo as fotos e descrição.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3><ion-icon name="help-circle-outline"></ion-icon> Quem pode se cadastrar no site?</h3>
-            <p>Qualquer pessoa física maior de idade ou instituições sem fins lucrativos podem se cadastrar na plataforma.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3><ion-icon name="help-circle-outline"></ion-icon> Como entro em contato com um doador?</h3>
-            <p>Ao encontrar o item desejado, basta clicar no botão de contato disponível no anúncio do item para conversar diretamente com o doador.</p>
-        </div>
-
-    </div>
-</main>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderNav();
+    });
+  </script>
 </body>
 </html>

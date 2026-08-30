@@ -3,119 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar - Doe-se</title>
+    <title>Cadastrar | Doe-se</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
-<body>
-
-   <div class="login-container">
-
-<h2>Criar Conta</h2>
-
-<form id="formCadastro">
-
-<div class="input-box">
-<input type="text" id="nome" placeholder="Nome Completo" required>
-</div>
-
-<div class="input-box">
-<input type="email" id="email" placeholder="E-mail" required>
-</div>
-
-<div class="linha">
-
-<div class="input-box">
-<input type="tel" id="telefone" placeholder="Telefone">
-</div>
-
-<div class="input-box">
-<input type="text" id="cpf" placeholder="CPF">
-</div>
-
-</div>
-
-<div class="linha">
-
-<div class="input-box">
-<input type="text" id="cep" placeholder="CEP">
-</div>
-
-<div class="input-box">
-<input type="text" id="cidade" placeholder="Cidade">
-</div>
-
-</div>
-
-<div class="linha">
-
-<div class="input-box">
-<input type="text" id="estado" placeholder="UF">
-</div>
-
-<div class="input-box">
-<input type="text" id="bairro" placeholder="Bairro">
-</div>
-
-</div>
-
-<div class="input-box">
-<input type="text" id="endereco" placeholder="Rua">
-</div>
-
-<div class="linha">
-
-<div class="input-box">
-<input type="text" id="numero" placeholder="Número">
-</div>
-
-<div class="input-box">
-<input type="text" id="complemento" placeholder="Complemento">
-</div>
-
-</div>
-
-<div class="linha">
-
-<div class="input-box">
-<input type="password" id="senha" placeholder="Senha">
-</div>
-
-<div class="input-box">
-<input type="password" id="confirmarSenha" placeholder="Confirmar senha">
-</div>
-
-</div>
-
-<div class="input-box">
-<label>Foto de Perfil</label>
-<input type="file" id="fotoPerfil" accept="image/*">
-</div>
-
-<div class="input-box">
-<label>Documento (RG ou CNH)</label>
-<input type="file" id="fotoDocumento" accept="image/*,.pdf">
-</div>
-
-<div class="termos">
-
-<label>
-
-<input type="checkbox" required>
-
-Li e aceito os Termos de Uso
-
-</label>
-
-</div>
-
-<button class="btn-login">
-Criar Conta
-</button>
-
-</form>
-
-</div>
+<body class="auth-page">
+    <main class="auth-card">
+        <h1>Criar conta</h1>
+        <form id="cadastro">
+            <label>Nome</label><input class="input" name="nome" placeholder="Nome completo" required>
+            <label>E-mail</label><input class="input" name="email" type="email" placeholder="Seu e-mail" required>
+            <div class="linha">
+                <div><label>Telefone</label><input class="input" name="telefone" placeholder="Telefone"></div>
+                <div><label>CPF</label><input class="input" name="cpf" placeholder="CPF" required></div>
+            </div>
+            <label>Senha</label><input class="input" name="senha" type="password" placeholder="Crie uma senha" required>
+            <div class="linha">
+                <div><label>CEP</label><input class="input" name="cep" placeholder="CEP"></div>
+                <div><label>Cidade</label><input class="input" name="cidade" placeholder="Cidade"></div>
+            </div>
+            <div class="linha">
+                <div><label>Estado (UF)</label><input class="input" name="estado" maxlength="2" placeholder="UF"></div>
+                <div><label>Bairro</label><input class="input" name="bairro" placeholder="Bairro"></div>
+            </div>
+            <div class="linha">
+                <div><label>Endereço</label><input class="input" name="endereco" placeholder="Rua"></div>
+                <div><label>Número</label><input class="input" name="numero" placeholder="Número"></div>
+            </div>
+            <label>Complemento</label><input class="input" name="complemento" placeholder="Complemento (opcional)">
+            <button type="submit" class="btn-login btn">Criar conta</button>
+            <div id="msg"></div>
+        </form>
+        <div class="auth-actions">
+            <p>Já possui conta? <a href="login.html">Entrar</a></p>
+            <p style="margin-top:8px"><a href="index.html">← Voltar para os itens</a></p>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('cadastro').onsubmit = async e => {
+            e.preventDefault();
+            const msg = document.getElementById('msg');
+            const obj = Object.fromEntries(new FormData(e.target));
+            try {
+                await api('/usuarios/cadastro', {method:'POST', headers:authHeaders(), body:JSON.stringify(obj)});
+                alert('Cadastro realizado! Faça login.');
+                location.href = 'login.html';
+            } catch (x) {
+                msg.textContent = x.message;
+                msg.className = 'msg error';
+            }
+        };
+    </script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar item | Doe-se</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container">
+    <form id="formItem" class="form">
+      <h1>Publicar item</h1>
+
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" class="input" name="titulo" required>
+
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" class="input" name="descricao" required></textarea>
+
+      <label for="categoria">Categoria</label>
+      <select class="input" name="categoria_id" id="categoria" required></select>
+
+      <label for="estado">Estado do item</label>
+      <select id="estado" class="input" name="estado" required>
+        <option value="Ótimo">Ótimo</option>
+        <option value="Bom">Bom</option>
+        <option value="Razoável">Razoável</option>
+      </select>
+
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" class="input" name="cidade">
+
+      <label for="bairro">Bairro</label>
+      <input type="text" id="bairro" class="input" name="bairro">
+
+      <label for="cep">CEP</label>
+      <input type="text" id="cep" class="input" name="cep">
+
+      <label for="endereco">Endereço</label>
+      <input type="text" id="endereco" class="input" name="endereco">
+
+      <label for="numero">Número</label>
+      <input type="text" id="numero" class="input" name="numero">
+
+      <label for="imagem">Imagem</label>
+      <input type="file" id="imagem" class="input" name="imagem" accept="image/jpeg,image/png,image/webp">
+
+      <button type="submit" class="btn">Publicar</button>
+
+      <div id="resultado"></div>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderNav();
+      publicar();
+    });
+  </script>
+</body>
+</html>

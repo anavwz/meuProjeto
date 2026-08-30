@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doe-se | Itens</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="nav"></div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Itens para doação</h1>
+      <p>Encontre algo que você precisa ou publique o que deseja doar.</p>
+    </section>
+
+    <form id="filtros" class="filters">
+      <input type="text" class="input" name="nome" placeholder="Pesquisar por nome">
+      <select class="input" name="categoria" id="categoria"></select>
+      <input type="text" class="input" name="cidade" placeholder="Cidade">
+      <input type="text" class="input" name="bairro" placeholder="Bairro">
+      <button type="submit" class="btn">Pesquisar</button>
+    </form>
+
+    <div id="lista" class="grid"></div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderNav();
+      carregarCategorias();
+      filtros();
+      listar();
+    });
+  </script>
+</body>
+</html>

@@ -369,3 +369,190 @@ body {
     line-height: 1.5;
     padding-left: 32px;
 }
+
+/* ===== ÁREA FUNCIONAL DO MARKETPLACE ===== */
+body:not(.auth-page) {
+    background: #f5f8f5;
+    color: #17351f;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+}
+
+.hero {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.hero h1 { color: #063514; margin-bottom: 8px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #dce9df;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #e8f2ea;
+    margin-bottom: 10px;
+}
+
+.card h3 { margin-bottom: 8px; color: #17351f; }
+
+.btn {
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 15px;
+    background: #086627;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.btn:hover { background: #064f31; }
+.btn.secondary { background: #e2f1e6; color: #145c29; }
+.btn.secondary:hover { background: #cce5d3; }
+.btn.danger { background: #b42318; }
+
+.filters, .form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccd9cf;
+    border-radius: 6px;
+    margin: 5px 0 12px;
+    outline: none;
+}
+
+.input:focus { border-color: #11AA61; box-shadow: 0 0 0 2px rgba(17,170,97,.12); }
+.form label { font-weight: bold; font-size: 14px; display: block; }
+.form h1 { color: #063514; margin-bottom: 20px; }
+
+.status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #e8f5eb;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.detail {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.detail-img {
+    max-width: 500px;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #e8f2ea;
+    margin: 10px 0 18px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.comment {
+    padding: 13px;
+    border: 1px solid #e1e8e2;
+    border-radius: 8px;
+    margin: 8px 0;
+    background: #fff;
+}
+
+.reply { margin-left: 30px; background: #f5faf6; }
+.hidden { display: none; }
+.msg { padding: 10px; margin: 10px 0; border-radius: 7px; background: #eaf7ed; }
+.error { background: #ffecec; color: #8a1717; }
+.small { font-size: 13px; color: #617067; }
+
+/* Login e cadastro funcionais, sem alterar a navbar original */
+.auth-page {
+    min-height: 100vh;
+    background: #f5f8f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 650px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.10);
+}
+
+.auth-card.login { max-width: 420px; }
+.auth-card h1 { color: #22a153; text-align: center; margin-bottom: 22px; }
+.auth-card .input { margin-bottom: 14px; }
+.auth-actions { margin-top: 10px; text-align: center; }
+.auth-actions a { color: #009c3c; text-decoration: none; }
+.auth-actions a:hover { text-decoration: underline; }
+
+.linha { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+textarea.input { min-height: 110px; resize: vertical; }
+
+/* Compatibilidade com o campo de pesquisa da navbar original */
+.search-field form { width: 100%; height: 100%; }
+.search-field .nav-search-input { padding-left: 45px; }
+
+@media (max-width: 800px) {
+    .filters { grid-template-columns: 1fr; }
+    .nav-bar .nav-links li { margin: 0 10px; }
+    .nav-bar .nav-links { flex-wrap: wrap; }
+    .container { margin-top: 90px; }
+}
+
+@media (max-width: 600px) {
+    .linha { grid-template-columns: 1fr; gap: 0; }
+    .top { flex-direction: column; align-items: flex-start; }
+    .auth-card { padding: 22px; }
+}
